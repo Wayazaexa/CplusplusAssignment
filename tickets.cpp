@@ -9,27 +9,19 @@
  * 
  */
 #include <iostream>
+#include <iterator>
 #include "flights.hh"
+#include "bookings.hh"
 
 int main(int argc, char **argv)
 {
     std::cout << "Ticket system!\n--------------\n";
-    flight *test1 = new flight(304, "GOT", "CPH", "2022-10-27", "06:30", 4, 7, 10);
-    flight *test2 = new flight(304, "GOT", "CPH", "2022-10-27", "07:30", 4, 7, 10);
-    flight *test3 = new flight(304, "GOT", "CPH", "2022-10-27", "08:30", 4, 7, 10);
-    //flights *testList = new flights();
-    //testList->addFlight(*test1);
-    //testList->addFlight(*test2);
-    //testList->addFlight(*test3);
-    test1->print();
-    std::cout << "\n";
-    test2->print();
-    std::cout << "\n";
-    test3->print();
-    std::cout << "\n";
-    delete test1;
-    delete test2;
-    delete test3;
-    //delete testList;
+    // TODO: set to read from the big files, later on set to read from argv[1] and argv[2].
+    flights *flightList = new flights("flightsTest.csv");
+    bookings *bookingList = new bookings("bookingsTest.csv");
+    
+
+    delete flightList;
+    delete bookingList;
     return 0;
 }

@@ -1,8 +1,7 @@
 /**
  * @file bookings.hh
  * @author Joakim Englund (joakimenglund@protonmail.com)
- * @brief This is the hh-file for the bookings class which contains a list of
- * all bookings.
+ * @brief This is the hh-file for the bookings class which manage the bookings.
  * @version 0.1
  * @date 2022-11-09
  * 
@@ -18,10 +17,12 @@
 class bookings
 {
 private:
-    std::list<booking> bookingsList;
+    std::list<booking *> bookingsList;
 public:
-    bookings(/* args */);
+    bookings(std::string filename);
     ~bookings();
+    std::list<booking *> getBookings() { return this->bookingsList; }
+    void addBooking(booking *newBooking);
 };
 
 #endif
