@@ -10,11 +10,13 @@
  */
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include "flights.hh"
 
 flights::flights(std::string filename)
 {
-    std::ifstream inFile(filename);
+    std::ifstream ss(filename);
+    std::string line;
     std::string flNum;
     std::string dep;
     std::string des;
@@ -24,24 +26,24 @@ flights::flights(std::string filename)
     std::string bRows;
     std::string eRows;
 
-    if (inFile.is_open())
+    if (ss.is_open())
     {
-        while (!inFile.eof())
+        while (getline(ss, line))
         {
-            if (getline(inFile, flNum, ','))
-            {
-                getline(inFile, dep, ',');
-                getline(inFile, des, ',');
-                getline(inFile, date, ',');
-                getline(inFile, time, ',');
-                getline(inFile, fRows, ',');
-                getline(inFile, bRows, ',');
-                getline(inFile, eRows);
-                flight *newFlight = new flight(std::stoi(flNum), dep, des, date, time, std::stoi(fRows), std::stoi(bRows), std::stoi(eRows));
-                this->addFlight(newFlight);
-            }
+            std::stringstream ss(line);
+
+            getline(ss, flNum, ',');
+            getline(ss, dep, ',');
+            getline(ss, des, ',');
+            getline(ss, date, ',');
+            getline(ss, time, ',');
+            getline(ss, fRows, ',');
+            getline(ss, bRows, ',');
+            getline(ss, eRows);
+            flight *newFlight = new flight(std::stoi(flNum), dep, des, date, time, std::stoi(fRows), std::stoi(bRows), std::stoi(eRows));
+            this->addFlight(newFlight);
         }
-        inFile.close();
+        ss.close();
     }
 }
 

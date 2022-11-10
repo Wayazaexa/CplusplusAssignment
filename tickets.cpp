@@ -19,7 +19,8 @@ int main(int argc, char **argv)
     // TODO: set to read from the big files, later on set to read from argv[1] and argv[2].
     flights *flightList = new flights("flightsTest.csv");
     bookings *bookingList = new bookings("bookingsTest.csv");
-    
+    //flightList->getFlights().front()->print();
+    //std::cout << "\n";
 
     delete flightList;
     delete bookingList;

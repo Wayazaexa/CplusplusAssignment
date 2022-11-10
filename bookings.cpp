@@ -10,12 +10,14 @@
  */
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include "bookings.hh"
 
 
 bookings::bookings(std::string filename)
 {
     std::ifstream inFile(filename);
+    std::string line;
     std::string bNum;
 	std::string date;
 	std::string time;
@@ -27,20 +29,20 @@ bookings::bookings(std::string filename)
 
     if (inFile.is_open())
     {
-        while (!inFile.eof())
+        while (getline(inFile, line))
         {
-            if (getline(inFile, bNum, ','))
-            {
-                getline(inFile, date, ',');
-                getline(inFile, time, ',');
-                getline(inFile, dep, ',');
-                getline(inFile, des, ',');
-                getline(inFile, sClass, ',');
-                getline(inFile, fName, ',');
-                getline(inFile, surname);
-                booking *newBooking = new booking(std::stoi(bNum), date, time, dep, des, sClass, fName, surname);
-                this->addBooking(newBooking);
-            }
+            std::stringstream ss(line);
+
+            getline(ss, bNum, ',');
+            getline(ss, date, ',');
+            getline(ss, time, ',');
+            getline(ss, dep, ',');
+            getline(ss, des, ',');
+            getline(ss, sClass, ',');
+            getline(ss, fName, ',');
+            getline(ss, surname);
+            booking *newBooking = new booking(std::stoi(bNum), date, time, dep, des, sClass, fName, surname);
+            this->addBooking(newBooking);
         }
         inFile.close();
     }
