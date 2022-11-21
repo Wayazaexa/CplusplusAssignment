@@ -17,7 +17,7 @@ int main(int argc, char **argv)
     if (argc < 3)
     {
         std::cerr << "Error! Must provide files to read data from!\n" <<
-                     "Example: ./ticketSystem -f flights.csv -b bookings.csv\n";
+                     "Example: ./ticketSystem.o -f flights.csv -b bookings.csv\n";
         return -1;
     }
     else
@@ -25,7 +25,7 @@ int main(int argc, char **argv)
         int opt;
         Flights *flightList = NULL;
         Bookings *bookingList = NULL;
-        std::cout << "Ticket system!\n--------------\n";
+        std::cout << "Ticket system!\n--------------\nGenerating tickets!\n";
 
         while ((opt = getopt(argc, argv, "f:b:")) != -1)
         {
@@ -36,8 +36,9 @@ int main(int argc, char **argv)
                 break;
             case 'b':
                 bookingList = new Bookings(optarg);
+                break;
             default:
-                std::cerr << "Unrecognized flag [" << opt << "]!\n";
+                std::cerr << "Unrecognized flag [" << (char)opt << "]! This flag will be ignored!\n";
                 break;
             }
         }
