@@ -14,15 +14,15 @@
 #ifndef BOOKINGS_CLASS
 #define BOOKINGS_CLASS
 
-class bookings
+class Bookings
 {
 private:
-    std::list<booking *> bookingsList;
+    std::list<Booking *> bookingList;
 public:
-    bookings(std::string filename);
-    ~bookings();
-    std::list<booking *> getBookings() { return this->bookingsList; }
-    void addBooking(booking *newBooking);
+    Bookings(std::string filename);
+    ~Bookings();
+    std::list<Booking *> getBookings() { return this->bookingList; }
+    void addBooking(Booking *newBooking);
 };
 
 #endif

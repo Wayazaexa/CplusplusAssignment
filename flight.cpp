@@ -11,24 +11,12 @@
  */
 #include "flight.hh"
 
-flight::flight()
-{
-    this->flNum = 0;
-    this->dep = "";
-    this->des = "";
-    this->date = "";
-    this->time = "";
-    this->fRows = 0;
-    this->bRows = 0;
-    this->eRows = 0;
-}
-
-flight::flight(int flNum, std::string dep, std::string des, std::string date,
+Flight::Flight(int flNum, std::string dep, std::string des, std::string date,
                std::string time, int fRows, int bRows, int eRows)
 {
     this->flNum = flNum;
-    this->dep.assign(dep);
-    this->des.assign(des);
+    this->dep = dep;
+    this->des = des;
     this->date.assign(date);
     this->time.assign(time);
     this->fRows = fRows;
@@ -48,9 +36,55 @@ flight::flight(int flNum, std::string dep, std::string des, std::string date,
     }
 }
 
-flight::~flight()
+bool Flight::matchWithBooking(Booking *booking)
 {
-    this->fSeatFlags.clear();
-    this->bSeatFlags.clear();
-    this->eSeatFlags.clear();
+    return !(this->date.compare(booking->getDate()) || this->time.compare(booking->getTime()) ||
+           this->dep.compare(booking->getDep()) || this->des.compare(booking->getDes()));
+}
+
+bool Flight::allocateSeat(Booking *booking, int *row, int *seat)
+{
+    if (!booking->getSClass().compare("first"))
+    {
+		// Try to allocate a seat in first class
+        for (int i = 0; i < this->fSeatFlags.size(); i++)
+        {
+            if (this->fSeatFlags[i] == 0)
+            {
+                this->fSeatFlags[i] = 1;
+                *row = (int)(i / 7) + 1;
+                *seat = i + 1;
+                return true;
+            }
+        }
+    }
+    else if (!booking->getSClass().compare("business"))
+    {
+		// Try to allocate a seat in business class
+        for (int i = 0; i < this->bSeatFlags.size(); i++)
+        {
+            if (this->bSeatFlags[i] == 0)
+            {
+                this->bSeatFlags[i] = 1;
+				*row = this->fRows + (int)(i / 7) + 1;
+				*seat = this->fRows * 7 + i + 1;
+                return true;
+            }
+        }
+    }
+    else
+    {
+		// Try to allocate a seat in economy class
+        for (int i = 0; i < this->eSeatFlags.size(); i++)
+        {
+            if (this->eSeatFlags[i] == 0)
+            {
+                this->eSeatFlags[i] = 1;
+				*row = this->bRows + this->fRows + (int)(i / 7) + 1;
+				*seat = this->bRows * 7 + this->fRows * 7 + i + 1;
+                return true;
+            }
+        }
+    }
+    return false;
 }

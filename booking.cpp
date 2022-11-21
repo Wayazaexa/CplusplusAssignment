@@ -11,19 +11,7 @@
  */
 #include "booking.hh"
 
-booking::booking()
-{
-    this->bNum = 0;
-    this->date = "";
-    this->time = "";
-    this->dep = "";
-    this->des = "";
-    this->sClass = "";
-    this->fName = "";
-    this->surname = "";
-}
-
-booking::booking(int bNum, std::string date, std::string time, std::string dep,
+Booking::Booking(int bNum, std::string date, std::string time, std::string dep,
             std::string des, std::string sClass, std::string fName,
             std::string surname)
 {
@@ -35,8 +23,4 @@ booking::booking(int bNum, std::string date, std::string time, std::string dep,
     this->sClass.assign(sClass);
     this->fName.assign(fName);
     this->surname.assign(surname);
-}
-
-booking::~booking()
-{
 }

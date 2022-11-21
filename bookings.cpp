@@ -14,7 +14,7 @@
 #include "bookings.hh"
 
 
-bookings::bookings(std::string filename)
+Bookings::Bookings(std::string filename)
 {
     std::ifstream inFile(filename);
     std::string line;
@@ -41,23 +41,24 @@ bookings::bookings(std::string filename)
             getline(ss, sClass, ',');
             getline(ss, fName, ',');
             getline(ss, surname);
-            booking *newBooking = new booking(std::stoi(bNum), date, time, dep, des, sClass, fName, surname);
+            Booking *newBooking = new Booking(std::stoi(bNum), date, time, dep, des, sClass, fName, surname);
             this->addBooking(newBooking);
         }
         inFile.close();
     }
 }
 
-bookings::~bookings()
+Bookings::~Bookings()
 {
-    while (!this->bookingsList.empty())
+    // TODO: I really should use smart pointers instead so I don't have to do this.
+    while (!this->bookingList.empty())
     {
-        delete this->bookingsList.front();
-        this->bookingsList.pop_front();
+        delete this->bookingList.front();
+        this->bookingList.pop_front();
     }
 }
 
-void bookings::addBooking(booking *newBooking)
+void Bookings::addBooking(Booking *newBooking)
 {
-    this->bookingsList.push_back(newBooking);
+    this->bookingList.push_back(newBooking);
 }

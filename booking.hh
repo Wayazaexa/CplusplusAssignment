@@ -10,11 +10,13 @@
  * 
  */
 #include <string>
+// TODO: For testing.
+#include <iostream>
 
 #ifndef BOOKING_CLASS
 #define BOOKING_CLASS
 
-class booking
+class Booking
 {
 private:
     int bNum;
@@ -26,11 +28,18 @@ private:
 	std::string fName;
 	std::string surname;
 public:
-    booking();
-    booking(int bNum, std::string date, std::string time, std::string dep,
+    Booking(int bNum, std::string date, std::string time, std::string dep,
             std::string des, std::string sClass, std::string fName,
             std::string surname);
-    ~booking();
+    ~Booking() {}
+	int getBNum() { return this->bNum; }
+	std::string getDate() { return this->date; }
+	std::string getTime() { return this->time; }
+	std::string getDep() { return this->dep; }
+	std::string getDes() { return this->des; }
+	std::string getSClass() { return this->sClass; }
+	std::string getFName() { return this->fName; }
+	std::string getSurname() { return this->surname; }
 };
 
 #endif

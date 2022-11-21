@@ -12,17 +12,22 @@
 #include "flight.hh"
 
 #ifndef FLIGTHS_CLASS
-#define FLIGHTS_CLASS
+#define FLIGTHS_CLASS
 
-class flights
+// Added the start of managing cancelled flights. Will add properly if I have the time.
+class Flights
 {
 private:
-    std::list<flight *> flightList;
+    std::list<Flight *> flights;
+    //std::list<Flight *> cancelledFlights; 
 public:
-    flights(std::string filename);
-    ~flights();
-    std::list<flight *> getFlights() { return this->flightList; }
-    void addFlight(flight *newFlight);
+    Flights(std::string filename);
+    ~Flights();
+    std::list<Flight *> getFlights() { return this->flights; }
+    //std::list<Flight *> getCancelledFlights() { return this->cancelledFlights; }
+    void addFlight(Flight *newFlight) { this->flights.push_back(newFlight); }
+    //void addCancelledFlight(Flight *newFlight) { this->cancelledFlights.push_back(newFlight); }
+    //void cancelFlightFront() { this->cancelledFlights.push_back(this->flights.front()); this->flights.pop_front(); }
 };
 
 #endif

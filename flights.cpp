@@ -13,9 +13,9 @@
 #include <sstream>
 #include "flights.hh"
 
-flights::flights(std::string filename)
+Flights::Flights(std::string filename)
 {
-    std::ifstream ss(filename);
+    std::ifstream inFile(filename);
     std::string line;
     std::string flNum;
     std::string dep;
@@ -26,9 +26,9 @@ flights::flights(std::string filename)
     std::string bRows;
     std::string eRows;
 
-    if (ss.is_open())
+    if (inFile.is_open())
     {
-        while (getline(ss, line))
+        while (getline(inFile, line))
         {
             std::stringstream ss(line);
 
@@ -40,23 +40,26 @@ flights::flights(std::string filename)
             getline(ss, fRows, ',');
             getline(ss, bRows, ',');
             getline(ss, eRows);
-            flight *newFlight = new flight(std::stoi(flNum), dep, des, date, time, std::stoi(fRows), std::stoi(bRows), std::stoi(eRows));
+            Flight *newFlight = new Flight(std::stoi(flNum), dep, des, date, time, std::stoi(fRows), std::stoi(bRows), std::stoi(eRows));
             this->addFlight(newFlight);
         }
-        ss.close();
+        inFile.close();
     }
 }
 
-flights::~flights()
+Flights::~Flights()
 {
-    while (!this->flightList.empty())
+    // TODO: I really should use smart pointers instead so I don't have to do this.
+    while (!this->flights.empty())
     {
-        delete this->flightList.front();
-        this->flightList.pop_front();
+        delete this->flights.front();
+        this->flights.pop_front();
     }
-}
-
-void flights::addFlight(flight *newFlight)
-{
-    this->flightList.push_back(newFlight);
+    /*
+    while (!this->cancelledFlights.empty())
+    {
+        delete this->cancelledFlights.front();
+        this->cancelledFlights.pop_front();
+    }
+    */
 }
