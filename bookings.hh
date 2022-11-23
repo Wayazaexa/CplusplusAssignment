@@ -14,15 +14,19 @@
 #ifndef BOOKINGS_CLASS
 #define BOOKINGS_CLASS
 
+/**
+ * @brief This is the definition of the Bookings class.
+ * 
+ */
 class Bookings
 {
 private:
-    std::list<Booking *> bookingList;
+    std::list<Booking *> bookingsList;
 public:
     Bookings(std::string filename);
     ~Bookings();
-    std::list<Booking *> getBookings() { return this->bookingList; }
-    void addBooking(Booking *newBooking);
+    std::list<Booking *> getBookings() { return this->bookingsList; }
+    void addBooking(Booking *newBooking) { this->bookingsList.push_back(newBooking); }
 };
 
 #endif

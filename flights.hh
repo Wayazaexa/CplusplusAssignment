@@ -1,7 +1,7 @@
 /**
- * @file flights.hh
+ * @file flightsList.hh
  * @author Joakim Englund (joakimenglund@protonmail.com)
- * @brief This is the hh-file for the flights class which manages the flights.
+ * @brief This is the hh-file for the flightsList class which manages the flightsList.
  * @version 0.1
  * @date 2022-11-09
  * 
@@ -14,20 +14,23 @@
 #ifndef FLIGTHS_CLASS
 #define FLIGTHS_CLASS
 
-// Added the start of managing cancelled flights. Will add properly if I have the time.
+/**
+ * @brief This is the definition of the Flights class.
+ * 
+ */
 class Flights
 {
 private:
-    std::list<Flight *> flights;
-    //std::list<Flight *> cancelledFlights; 
+    std::list<Flight *> flightsList;
 public:
+    Flights() {}
     Flights(std::string filename);
     ~Flights();
-    std::list<Flight *> getFlights() { return this->flights; }
-    //std::list<Flight *> getCancelledFlights() { return this->cancelledFlights; }
-    void addFlight(Flight *newFlight) { this->flights.push_back(newFlight); }
-    //void addCancelledFlight(Flight *newFlight) { this->cancelledFlights.push_back(newFlight); }
-    //void cancelFlightFront() { this->cancelledFlights.push_back(this->flights.front()); this->flights.pop_front(); }
+    std::list<Flight *> getFlights() { return this->flightsList; }
+    void addFlight(Flight *newFlight) { this->flightsList.push_back(newFlight); }
+    void cancelFlights(Flights *cancelledFlights, std::string filename);
+    void createSeatingMap(std::string filename);
+    // Add a function here to remove an object and return it, needed for cancelling flights.
 };
 
 #endif

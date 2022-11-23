@@ -15,6 +15,10 @@
 #ifndef TICKET_MANAGER_CLASS
 #define TICKET_MANAGER_CLASS
 
+/**
+ * @brief This is the definition of the TicketManager class.
+ * 
+ */
 class TicketManager
 {
 private:

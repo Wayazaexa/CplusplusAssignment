@@ -8,12 +8,16 @@
  * @copyright Copyright (c) 2022
  * 
  */
-#include <iostream>
 #include <fstream>
 #include <sstream>
 #include "bookings.hh"
 
-
+/**
+ * @brief This is the constructor for the Bookings class.
+ * 
+ * @param [in] filename - A string containing a filename to read the data for
+ *                        the Booking objects from.
+ */
 Bookings::Bookings(std::string filename)
 {
     std::ifstream inFile(filename);
@@ -48,17 +52,18 @@ Bookings::Bookings(std::string filename)
     }
 }
 
+/**
+ * @brief This is the destructor for the Bookings class.
+ * Since the class contains a list of pointers to Booking objects, these need
+ * to be deleted properly here (because I didn't use smart pointers).
+ * 
+ */
 Bookings::~Bookings()
 {
     // TODO: I really should use smart pointers instead so I don't have to do this.
-    while (!this->bookingList.empty())
+    while (!this->bookingsList.empty())
     {
-        delete this->bookingList.front();
-        this->bookingList.pop_front();
+        delete this->bookingsList.front();
+        this->bookingsList.pop_front();
     }
-}
-
-void Bookings::addBooking(Booking *newBooking)
-{
-    this->bookingList.push_back(newBooking);
 }

@@ -11,16 +11,28 @@
  */
 #include "booking.hh"
 
+/**
+ * @brief This is the constructor for the Booking class.
+ * 
+ * @param [in] bNum - An int representing a booking number.
+ * @param [in] date - A string representing a date.
+ * @param [in] time - A string representing a time.
+ * @param [in] dep - A string representing a departure location.
+ * @param [in] des - A string representing a destination location.
+ * @param [in] sClass - A string representing a seating class.
+ * @param [in] fName - A string representing a first name.
+ * @param [in] surname - A string representing a surname.
+ */
 Booking::Booking(int bNum, std::string date, std::string time, std::string dep,
             std::string des, std::string sClass, std::string fName,
             std::string surname)
 {
     this->bNum = bNum;
-    this->date.assign(date);
-    this->time.assign(time);
-    this->dep.assign(dep);
-    this->des.assign(des);
-    this->sClass.assign(sClass);
-    this->fName.assign(fName);
-    this->surname.assign(surname);
+    this->date = date;
+    this->time = time;
+    this->dep = dep;
+    this->des = des;
+    this->sClass = sClass;
+    this->fName = fName;
+    this->surname = surname;
 }

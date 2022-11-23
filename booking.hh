@@ -10,12 +10,14 @@
  * 
  */
 #include <string>
-// TODO: For testing.
-#include <iostream>
 
 #ifndef BOOKING_CLASS
 #define BOOKING_CLASS
 
+/**
+ * @brief This is the definition of the Booking class.
+ * 
+ */
 class Booking
 {
 private:
