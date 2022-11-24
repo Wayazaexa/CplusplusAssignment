@@ -28,10 +28,10 @@ Booking::Booking(int bNum, std::string date, std::string time, std::string dep,
             std::string surname)
 {
     this->bNum = bNum;
-    this->date = date;
-    this->time = time;
-    this->dep = dep;
-    this->des = des;
+    this->setDate(date);
+    this->setTime(time);
+    this->setDep(dep);
+    this->setDes(des);
     this->sClass = sClass;
     this->fName = fName;
     this->surname = surname;

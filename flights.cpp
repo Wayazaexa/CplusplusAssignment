@@ -124,7 +124,7 @@ void Flights::cancelFlights(Flights *cancelledFlights, std::string filename)
 
         if (outFile)
         {
-            outFile << counter << ") Flight " << cFlight->getFlNum() << ", Departure " << cFlight->getDep() << ", Destination " << cFlight->getDes() << ", Date " << cFlight->getDate() << ", Time " << cFlight->getTime() << "\n";
+            outFile << counter << ") " << cFlight << "\n";
             outFile.close();
         }
         else
@@ -156,9 +156,7 @@ void Flights::createSeatingMap(std::string filename)
         std::cout << "Creating seatmap.\n";
         for (auto fp : this->flightsList)
         {
-            //std::cout << "Flight " << fp->getFlNum() << ", Departure " << fp->getDep() << ", Destination " << fp->getDes() << "\n";
-            outFile << "Flight " << fp->getFlNum() << ", Departure " << fp->getDep() << ", Destination " << fp->getDes() <<
-                       ", Date " << fp->getDate() << ", Time " << fp->getTime() << "\nfirst class\n";
+            outFile << fp << "\nfirst class\n";
             int offset;
             for (int i = 0; i < fp->getFRows(); i++)
             {

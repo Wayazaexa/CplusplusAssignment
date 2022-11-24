@@ -27,10 +27,10 @@ Flight::Flight(int flNum, std::string dep, std::string des, std::string date,
                std::string time, int fRows, int bRows, int eRows)
 {
     this->flNum = flNum;
-    this->dep = dep;
-    this->des = des;
-    this->date = date;
-    this->time = time;
+    this->setDep(dep);
+    this->setDes(des);
+    this->setDate(date);
+    this->setTime(time);
     this->fRows = fRows;
     for (int i = 0; i < this->fRows * 7; i++)
     {
@@ -59,8 +59,8 @@ Flight::Flight(int flNum, std::string dep, std::string des, std::string date,
  */
 bool Flight::matchWithBooking(Booking *booking)
 {
-    return !(this->date.compare(booking->getDate()) || this->time.compare(booking->getTime()) ||
-           this->dep.compare(booking->getDep()) || this->des.compare(booking->getDes()));
+    return !(this->getDate().compare(booking->getDate()) || this->getTime().compare(booking->getTime()) ||
+           this->getDep().compare(booking->getDep()) || this->getDes().compare(booking->getDes()));
 }
 
 /**
@@ -118,4 +118,11 @@ bool Flight::allocateSeat(Booking *booking, int *row, int *seat)
         }
     }
     return false;
+}
+
+std::ostream& operator<<(std::ostream &out, Flight *f)
+{
+    out << "Flight " << f->getFlNum() << ", Departure " << f->getDep() << ", Destination " << f->getDes() <<
+                       ", Date " << f->getDate() << ", Time " << f->getTime();
+	return out ;
 }
