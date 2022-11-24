@@ -16,13 +16,17 @@ The csv files must have the following fields:
 flights.csv: flightNumber,departure,destination,date,time,numberOfFirstClassRows,numberOfBusinessClassRows,numberOfEconomyClassRows
 
 Ex:
+
 304,GOT,CPH,2022-10-27,09:30,4,7,10
+
 306,CPH,LHR,2022-10-27,06:30,2,4,8
 
 bookings.csv: bookingNumber,date,time,departure,destination,seatClass,firstName,surname
 
 Ex:
+
 1006,2022-10-27,06:30,GOT,LGW,first,Tjatte,Anka
+
 1007,2022-10-27,06:30,GOT,LGW,economy,Kajsa,Stinasson
 
 The program also have two optional parameters; the name of two text files that will store additional output
