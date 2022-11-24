@@ -9,10 +9,10 @@ Running 'make documentation' on this will use doxygen to generate documentation 
 html and latex, and latex will generate a pdf file called refman.pdf.
 ```
 
-```
 The program takes two parameters; a database of flights and a database of bookings, both in csv-type of files.
 The csv files must have the following fields:
 
+```
 flights.csv: flightNumber,departure,destination,date,time,numberOfFirstClassRows,numberOfBusinessClassRows,numberOfEconomyClassRows
 Ex:
 304,GOT,CPH,2022-10-27,09:30,4,7,10
