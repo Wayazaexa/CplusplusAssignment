@@ -9,4 +9,5 @@ The program also have two optional parameters; the name of two text files that w
 from the program, a seating map and a list of cancelled flights.
 
 Example usage: ./ticketSystem -f flights.csv -b bookings.csv
+
 Full example: ./ticketSystem -f flights.csv -b bookings.csv -c cancelled-flights.txt -s seating-map.txt
