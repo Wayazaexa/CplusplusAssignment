@@ -156,38 +156,49 @@ void Flights::createSeatingMap(std::string filename)
         std::cout << "Creating seatmap.\n";
         for (auto fp : this->flightsList)
         {
-            outFile << fp << "\nfirst class\n";
-            int offset;
-            for (int i = 0; i < fp->getFRows(); i++)
+            outFile << fp << "\nfirst class";
+            int rows = fp->getFRows() * 7;
+            for (int i = 0; i < rows; i++)
             {
-                
-                offset = i * 7;
-                outFile << "[" << (int)fp->getFSeatFlags()[offset] << "][" << (int)fp->getFSeatFlags()[offset + 1] << "] [" << (int)fp->getFSeatFlags()[offset + 2] << 
-                           "][" << (int)fp->getFSeatFlags()[offset + 3] << "][" << (int)fp->getFSeatFlags()[offset + 4] << "] [" << (int)fp->getFSeatFlags()[offset + 5] << 
-                           "][" << (int)fp->getFSeatFlags()[offset + 6] << "]\n";
-                
+                if (i % 7 == 2 || i % 7 == 5)
+                {
+                    outFile << " ";
+                }
+                else if (i % 7 == 0)
+                {
+                    outFile << "\n";
+                }
+                outFile << "[" << (int)fp->getFSeatFlags()[i] << "]";
             }
-            outFile << "business class\n";
-            for (int i = 0; i < fp->getBRows(); i++)
+            outFile << "\nbusiness class";
+            rows = fp->getBRows() * 7;
+            for (int i = 0; i < rows; i++)
             {
-                
-                offset = i * 7;
-                outFile << "[" << (int)fp->getBSeatFlags()[offset] << "][" << (int)fp->getBSeatFlags()[offset + 1] << "] [" << (int)fp->getBSeatFlags()[offset + 2] << 
-                           "][" << (int)fp->getBSeatFlags()[offset + 3] << "][" << (int)fp->getBSeatFlags()[offset + 4] << "] [" << (int)fp->getBSeatFlags()[offset + 5] << 
-                           "][" << (int)fp->getBSeatFlags()[offset + 6] << "]\n";
-                           
+                if (i % 7 == 2 || i % 7 == 5)
+                {
+                    outFile << " ";
+                }
+                else if (i % 7 == 0)
+                {
+                    outFile << "\n";
+                }
+                outFile << "[" << (int)fp->getBSeatFlags()[i] << "]";        
             }
-            outFile << "ecomony class\n";
-            for (int i = 0; i < fp->getERows(); i++)
+            outFile << "\necomony class";
+            rows = fp->getERows() * 7;
+            for (int i = 0; i < rows; i++)
             {
-                
-                offset = i * 7;
-                outFile << "[" << (int)fp->getESeatFlags()[offset] << "][" << (int)fp->getESeatFlags()[offset + 1] << "] [" << (int)fp->getESeatFlags()[offset + 2] << 
-                           "][" << (int)fp->getESeatFlags()[offset + 3] << "][" << (int)fp->getESeatFlags()[offset + 4] << "] [" << (int)fp->getESeatFlags()[offset + 5] << 
-                           "][" << (int)fp->getESeatFlags()[offset + 6] << "]\n";
-                           
+                if (i % 7 == 2 || i % 7 == 5)
+                {
+                    outFile << " ";
+                }
+                else if (i % 7 == 0)
+                {
+                    outFile << "\n";
+                }
+                outFile << "[" << (int)fp->getESeatFlags()[i] << "]";         
             }
-            outFile << "\n";
+            outFile << "\n\n";
         }
         outFile.close();
     }

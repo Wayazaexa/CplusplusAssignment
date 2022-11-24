@@ -30,7 +30,6 @@ public:
     void addFlight(Flight *newFlight) { this->flightsList.push_back(newFlight); }
     void cancelFlights(Flights *cancelledFlights, std::string filename);
     void createSeatingMap(std::string filename);
-    // Add a function here to remove an object and return it, needed for cancelling flights.
 };
 
 #endif
