@@ -5,3 +5,8 @@ ticketSystem: ticketSystem.cpp ticketManager.cpp ticketManager.hh booking.cpp bo
 check: ticketSystem
 	@echo "Running"
 	./ticketSystem -f flights.csv -b bookings.csv -c cancelled-flights.txt -s seat-mapping.txt
+
+documentation:
+	@echo "Generating documentation"
+	doxygen
+	cd latex && make
